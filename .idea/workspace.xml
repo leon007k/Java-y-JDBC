@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7278021-fc13-4f01-ac13-e6ef88dc6c9c" name="Changes" comment="" />
+    <list default="true" id="d7278021-fc13-4f01-ac13-e6ef88dc6c9c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/dao/CategoriaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/dao/ProductoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/factory/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/modelo/Categoria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/modelo/Producto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/pruebas/PruebaDelete.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/pruebas/PruebaPoolDeConexiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/CategoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/ProductoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/pruebas/PruebaConexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/pruebas/PruebaConexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ControlDeStockFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ControlDeStockFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ReporteFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ReporteFrame.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +35,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -25,17 +46,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/leoda/OneDrive/Documentos/Cursos CLAL/Alura LATAM/JavaSpringBoot/Java-y-JDBC&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Merging main",
+    "last_opened_file_path": "C:/Users/leoda/OneDrive/Documentos/Cursos CLAL/Alura LATAM/JavaSpringBoot/Java-y-JDBC",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.ControlDeStockMain">
     <configuration name="ControlDeStockMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.alura.jdbc.ControlDeStockMain" />

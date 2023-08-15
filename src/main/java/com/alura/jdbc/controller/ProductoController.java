@@ -1,5 +1,6 @@
 package com.alura.jdbc.controller;
 
+
 import com.alura.jdbc.CreaConexion;
 
 import java.sql.*;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 public class ProductoController {
 
-	public void modificar(String nombre, String descripcion, Integer id) {
+	public void modificar(String nombre, String descripcion, Integer id, Integer integer) {
 		// TODO
 	}
 
@@ -42,8 +43,7 @@ public class ProductoController {
 		return resultado;
 	}
 
-    public void guardar(Object producto) {
+    public void guardar(Object producto, Integer id) {
 		// TODO
 	}
-
 }
