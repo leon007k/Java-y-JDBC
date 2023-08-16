@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -130,7 +131,11 @@ public class ControlDeStockFrame extends JFrame {
     private void configurarAccionesDelFormulario() {
         botonGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                guardar();
+                try {
+                    guardar();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 limpiarTabla();
                 cargarTabla();
             }
@@ -189,10 +194,15 @@ public class ControlDeStockFrame extends JFrame {
                     String nombre = (String) modelo.getValueAt(tabla.getSelectedRow(), 1);
                     String descripcion = (String) modelo.getValueAt(tabla.getSelectedRow(), 2);
                     Integer cantidad = Integer.valueOf(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
+                    int cantidadActualizados;
 
-                    /*var filasModificadas = this.productoController.modificar(nombre, descripcion, cantidad, id);
+                    try {
+                        cantidadActualizados = this.productoController.modificar(nombre,descripcion,cantidad,id);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    JOptionPane.showMessageDialog(this, String.format("%d item modificado con éxito!", filasModificadas));*/
+                    JOptionPane.showMessageDialog(this,String.format("%d item modificado con exito", cantidadActualizados));
                 }, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un item"));
     }
 
@@ -206,13 +216,16 @@ public class ControlDeStockFrame extends JFrame {
         Optional.ofNullable(modelo.getValueAt(tabla.getSelectedRow(), tabla.getSelectedColumn()))
                 .ifPresentOrElse(fila -> {
                     Integer id = Integer.valueOf(modelo.getValueAt(tabla.getSelectedRow(), 0).toString());
-
-                    /*var filasModificadas = this.productoController.eliminar(id);
-
+                    int cantidadEliminada;
+                    try {
+                        cantidadEliminada =  this.productoController.eliminar(id);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    /*var filasModificadas = this.productoController.eliminar(id);*/
                     modelo.removeRow(tabla.getSelectedRow());
 
-                    JOptionPane.showMessageDialog(this,
-                            String.format("%d item eliminado con éxito!", filasModificadas));*/
+                    JOptionPane.showMessageDialog(this, cantidadEliminada + "Item eliminado con exito");
                 }, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un item"));
     }
 
@@ -230,7 +243,7 @@ public class ControlDeStockFrame extends JFrame {
         }
     }
 
-    private void guardar() {
+    private void guardar() throws SQLException {
         if (textoNombre.getText().isBlank() || textoDescripcion.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Los campos Nombre y Descripción son requeridos.");
             return;
@@ -246,14 +259,19 @@ public class ControlDeStockFrame extends JFrame {
             return;
         }
 
-        var producto = new Producto(
-                textoNombre.getText(),
-                textoDescripcion.getText(),
-                cantidadInt);
+        var producto = new HashMap<String, String>();
+        producto.put("NOMBRE", textoNombre.getText());
+        producto.put("DESCRIPCION", textoDescripcion.getText());
+        producto.put("CANTIDAD", textoCantidad.getText());
 
         var categoria = (Categoria) comboCategoria.getSelectedItem();
 
-        this.productoController.guardar(producto, categoria.getId());
+        try{
+            this.productoController.guardar(producto);
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
 
         JOptionPane.showMessageDialog(this, "Registrado con éxito!");
 
