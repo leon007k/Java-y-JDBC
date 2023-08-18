@@ -5,10 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7278021-fc13-4f01-ac13-e6ef88dc6c9c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/377e46bd4e2219999a7e32a9278b555d98530eb8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/95431244ac23fda3cbcd39b2c335581717fc6d8f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/d/ed434564ae63eda494f9664c237f0b8a5c964b9d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/7/377e46bd4e2219999a7e32a9278b555d98530eb8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/5/95431244ac23fda3cbcd39b2c335581717fc6d8f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/d/ed434564ae63eda494f9664c237f0b8a5c964b9d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/ControlDeStockMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/ControlDeStockMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/CategoriaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/controller/ProductoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/dao/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/dao/ProductoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/factory/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/factory/ConnectionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/pruebas/PruebaPoolDeConexiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/pruebas/PruebaPoolDeConexiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ControlDeStockFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ControlDeStockFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ReporteFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alura/jdbc/view/ReporteFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,19 +49,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/leoda/OneDrive/Documentos/Cursos CLAL/Alura LATAM/JavaSpringBoot/Java-y-JDBC",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/leoda/OneDrive/Documentos/Cursos CLAL/Alura LATAM/JavaSpringBoot/Java-y-JDBC&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.ControlDeStockMain">
     <configuration name="ControlDeStockMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.alura.jdbc.ControlDeStockMain" />
@@ -73,9 +89,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PruebaPoolDeConexiones" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.alura.jdbc.pruebas.PruebaPoolDeConexiones" />
+      <module name="control-de-stock" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.alura.jdbc.pruebas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ControlDeStockMain" />
+        <item itemvalue="Application.PruebaPoolDeConexiones" />
         <item itemvalue="Application.PruebaConexion" />
       </list>
     </recent_temporary>

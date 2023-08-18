@@ -35,7 +35,7 @@ public class ControlDeStockFrame extends JFrame {
     private ProductoController productoController;
     private CategoriaController categoriaController;
 
-    public ControlDeStockFrame() {
+    public ControlDeStockFrame() throws SQLException {
         super("Productos");
 
         this.categoriaController = new CategoriaController();
@@ -131,11 +131,7 @@ public class ControlDeStockFrame extends JFrame {
     private void configurarAccionesDelFormulario() {
         botonGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    guardar();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                guardar();
                 limpiarTabla();
                 cargarTabla();
             }
@@ -165,12 +161,16 @@ public class ControlDeStockFrame extends JFrame {
 
         botonReporte.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                abrirReporte();
+                try {
+                    abrirReporte();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
 
-    private void abrirReporte() {
+    private void abrirReporte() throws SQLException {
         new ReporteFrame(this);
     }
 
@@ -230,20 +230,14 @@ public class ControlDeStockFrame extends JFrame {
     }
 
     private void cargarTabla() {
-        try {
-            var productos = this.productoController.listar();
-            try {
-                productos.forEach(producto -> modelo.addRow(new Object[] { producto.get("ID"), producto.get("NOMBRE"),
-                producto.get("DESCRIPCION"), producto.get("CANTIDAD") }));
-            } catch (Exception e) {
-                throw e;
-            }
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        var productos = this.productoController.listar();
+        productos.forEach(producto -> modelo.addRow(new Object[]{producto.getId(),
+                producto.getNombre(),
+                producto.getDescripcion(),
+                producto.getCantidad()}));
     }
 
-    private void guardar() throws SQLException {
+    private void guardar() {
         if (textoNombre.getText().isBlank() || textoDescripcion.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Los campos Nombre y Descripción son requeridos.");
             return;
@@ -259,19 +253,17 @@ public class ControlDeStockFrame extends JFrame {
             return;
         }
 
-        var producto = new HashMap<String, String>();
-        producto.put("NOMBRE", textoNombre.getText());
-        producto.put("DESCRIPCION", textoDescripcion.getText());
-        producto.put("CANTIDAD", textoCantidad.getText());
+        // var producto = new HashMap<String, String>();
+        /*producto.put("NOMBRE", );
+        producto.put("DESCRIPCION", );
+        producto.put("CANTIDAD", );*/
+
+        // * Se hace uso de la estructura Modelo
+        var producto = new Producto(textoNombre.getText(), textoDescripcion.getText(), cantidadInt);
 
         var categoria = (Categoria) comboCategoria.getSelectedItem();
 
-        try{
-            this.productoController.guardar(producto);
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-
+        this.productoController.guardar(producto);
 
         JOptionPane.showMessageDialog(this, "Registrado con éxito!");
 

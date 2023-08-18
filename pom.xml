@@ -19,11 +19,17 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<version>8.1.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+		<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 pool de conexiones -->
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>0.9.5.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mchange/mchange-commons-java  agregar mas detalles de datasource mediante la consola-->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>mchange-commons-java</artifactId>
+			<version>0.2.20</version>
 		</dependency>
 
 
