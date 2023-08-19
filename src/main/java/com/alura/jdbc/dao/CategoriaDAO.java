@@ -24,12 +24,11 @@ public class CategoriaDAO {
         try {
             String sql = "SELECT ID, NOMBRE FROM CATEGORIA";
             
-            System.out.println(sql);
-            
             final PreparedStatement statement = con
                     .prepareStatement(sql);
 
             try (statement) {
+                // * Acceso directo que ejecuta el query junto con sus resultados
                 final ResultSet resultSet = statement.executeQuery();
 
                 try (resultSet) {
@@ -52,10 +51,8 @@ public class CategoriaDAO {
 
         try {
             String sql = "SELECT C.ID, C.NOMBRE, P.ID, P.NOMBRE, P.CANTIDAD "
-                    + " FROM CATEGORIA C INNER JOIN PRODUCTO P "
+                    + " FROM CATEGORIA C INNER JOIN PRODUCTOS P "
                     + " ON C.ID = P.CATEGORIA_ID";
-            
-            System.out.println(sql);
             
             final PreparedStatement statement = con
                     .prepareStatement(sql);
@@ -65,9 +62,10 @@ public class CategoriaDAO {
 
                 try (resultSet) {
                     while (resultSet.next()) {
-                        int categoriaId = resultSet.getInt("C.ID");
+                        Integer categoriaId = resultSet.getInt("C.ID");
                         String categoriaNombre = resultSet.getString("C.NOMBRE");
-                        
+
+                        // * evitamos duplicar las categorias en el listado de resultado
                         Categoria categoria = resultado
                             .stream()
                             .filter(cat -> cat.getId().equals(categoriaId))

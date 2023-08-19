@@ -23,7 +23,7 @@ public class ProductoDAO {
     }
 
     public void guardar(Producto producto) {
-        try (con) {
+        try {
             // * desactivamos control de transaccion
             //con.setAutoCommit(false);
 		    /*Statement statement = con.createStatement();
@@ -34,8 +34,8 @@ public class ProductoDAO {
 				producto.get("CANTIDAD") + ")", Statement.RETURN_GENERATED_KEYS);*/
 
             // * Trabajamos con PreparedStatement
-            final PreparedStatement pStatement = con.prepareStatement("INSERT INTO PRODUCTO(nombre,descripcion,cantidad)" +
-                            " VALUES(?,?,?)",
+            String query = "INSERT INTO PRODUCTOS(nombre,descripcion,cantidad,categoria_id) VALUES(?,?,?,?)";
+            final PreparedStatement pStatement = con.prepareStatement(query,
                     Statement.RETURN_GENERATED_KEYS);
 
             try (pStatement) {
@@ -52,6 +52,7 @@ public class ProductoDAO {
         pStatement.setString(1, producto.getNombre());
         pStatement.setString(2, producto.getDescripcion());
         pStatement.setInt(3, producto.getCantidad());
+        pStatement.setInt(4,producto.getCategoriaId());
 
         pStatement.execute();
 
@@ -70,18 +71,18 @@ public class ProductoDAO {
     public List<Producto> listar() {
         List<Producto> resultado = new ArrayList<>();
         // * Abrimos conexion
-        ConnectionFactory factory = new ConnectionFactory();
-        final Connection con = factory.recuperarConexion();
+        // *ConnectionFactory factory = new ConnectionFactory();
+        // *final Connection con = factory.recuperarConexion();
 
         // * con este statement, podremos crear nuestro query
 		/*Statement statement = con.createStatement();
 		statement.execute("SELECT ID,NOMBRE,DESCRIPCION,CANTIDAD FROM PRODUCTOS");*/
-        try(con) {
+        try {
             // * Trabajar con PreparedStatement
-            final PreparedStatement statement = con.prepareStatement("SELECT ID,NOMBRE,DESCRIPCION,CANTIDAD FROM PRODUCTOS");
-            statement.execute();
-
+            String query = "SELECT ID,NOMBRE,DESCRIPCION,CANTIDAD FROM PRODUCTOS";
+            final PreparedStatement statement = con.prepareStatement(query);
             try (statement) {
+                statement.execute();
                 // * Listado de resultados
                 final ResultSet resultSet = statement.getResultSet();
                 try(resultSet) {
@@ -101,79 +102,80 @@ public class ProductoDAO {
     }
 
     public int eliminar(Integer id) {
-        try {
-            final PreparedStatement statement = con.prepareStatement("DELETE FROM PRODUCTO WHERE ID = ?");
+        /*ConnectionFactory factory = new ConnectionFactory();
+        final Connection con = factory.recuperarConexion();
+		Statement statement = con.createStatement();
+		statement.execute("DELETE FROM PRODUCTOS WHERE ID = " + id);*/
 
-            try (statement) {
+        try {
+            String query = "DELETE FROM PRODUCTOS WHERE ID = ?";
+            final PreparedStatement statement = con.prepareStatement(query);
+            try(statement){
                 statement.setInt(1, id);
                 statement.execute();
-
-                int updateCount = statement.getUpdateCount();
-
-                return updateCount;
+                int cantidadEliminados = statement.getUpdateCount();
+                // * Devuelve cuantas filas fueron modificadas
+                return cantidadEliminados;
             }
-        } catch (SQLException e) {
+        }catch(SQLException e){
             throw new RuntimeException(e);
         }
     }
 
     public int modificar(String nombre, String descripcion, Integer cantidad, Integer id) {
-        try {
-            final PreparedStatement statement = con.prepareStatement(
-                    "UPDATE PRODUCTO SET "
-                            + " NOMBRE = ?, "
-                            + " DESCRIPCION = ?,"
-                            + " CANTIDAD = ?"
-                            + " WHERE ID = ?");
-
-            try (statement) {
+        /*ConnectionFactory factory = new ConnectionFactory();
+        final Connection con = factory.recuperarConexion();
+		/*Statement statement = con.createStatement();
+		statement.execute("UPDATE PRODUCTOS SET NOMBRE = '" + nombre + "'," +
+				"DESCRIPCION = '" + descripcion + "', CANTIDAD = " + cantidad +
+				"WHERE ID = " + id);*/
+        // * Se hace uso de try - with - resources version java 9, para evitar olvidar cerrar conexiones
+        try{
+            String query = "UPDATE PRODUCTOS SET NOMBRE = ?" +
+                    ",DESCRIPCION = ?, CANTIDAD =  ? " +
+                    "WHERE ID = ?";
+            final PreparedStatement statement = con.prepareStatement(query);
+            try(statement) {
                 statement.setString(1, nombre);
                 statement.setString(2, descripcion);
                 statement.setInt(3, cantidad);
                 statement.setInt(4, id);
+
                 statement.execute();
 
-                int updateCount = statement.getUpdateCount();
-
-                return updateCount;
+                int cantidadActualizados = statement.getUpdateCount();
+                return cantidadActualizados;
             }
-        } catch (SQLException e) {
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
 
-    public List<Producto> listar(Categoria categoria) {
+    public List<Producto> listarPorCategoria(Integer categoriaId) {
         List<Producto> resultado = new ArrayList<>();
-
         try {
-            String sql = "SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD "
-                    + " FROM PRODUCTO WHERE CATEGORIA_ID = ?";
-            System.out.println(sql);
-
-            final PreparedStatement statement = con.prepareStatement(
-                    sql);
-
+            String query = "SELECT ID,NOMBRE,DESCRIPCION,CANTIDAD FROM PRODUCTOS WHERE CATEGORIA_ID = ?";
+            // * Trabajar con PreparedStatement
+            final PreparedStatement statement = con.prepareStatement(query);
             try (statement) {
-                statement.setInt(1, categoria.getId());
+                statement.setInt(1,categoriaId);
+                System.out.println(query);
                 statement.execute();
-
+                // * Listado de resultados
                 final ResultSet resultSet = statement.getResultSet();
-
-                try (resultSet) {
+                try(resultSet) {
                     while (resultSet.next()) {
-                        resultado.add(new Producto(
-                                resultSet.getInt("ID"),
+                        Producto fila = new Producto(resultSet.getInt("ID"),
                                 resultSet.getString("NOMBRE"),
                                 resultSet.getString("DESCRIPCION"),
-                                resultSet.getInt("CANTIDAD")));
+                                resultSet.getInt("CANTIDAD"));
+                        resultado.add(fila);
                     }
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return resultado;
+        }catch (SQLException e){
+            throw  new RuntimeException(e);
         }
-
-        return resultado;
     }
-
 }

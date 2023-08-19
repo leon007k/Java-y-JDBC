@@ -28,7 +28,7 @@ public class ControlDeStockFrame extends JFrame {
 
     private JLabel labelNombre, labelDescripcion, labelCantidad, labelCategoria;
     private JTextField textoNombre, textoDescripcion, textoCantidad;
-    private JComboBox<Object> comboCategoria;
+    private JComboBox<Categoria> comboCategoria;
     private JButton botonGuardar, botonModificar, botonLimpiar, botonEliminar, botonReporte;
     private JTable tabla;
     private DefaultTableModel modelo;
@@ -100,11 +100,11 @@ public class ControlDeStockFrame extends JFrame {
         textoDescripcion = new JTextField();
         textoCantidad = new JTextField();
         comboCategoria = new JComboBox<>();
-        comboCategoria.addItem("Elige una Categoría");
+        comboCategoria.addItem(new Categoria(0,"Elige una Categoría"));
 
         // TODO
         var categorias = this.categoriaController.listar();
-        // categorias.forEach(categoria -> comboCategoria.addItem(categoria));
+        categorias.forEach(categoria -> comboCategoria.addItem(categoria));
 
         textoNombre.setBounds(10, 25, 265, 20);
         textoDescripcion.setBounds(10, 65, 265, 20);
@@ -196,11 +196,7 @@ public class ControlDeStockFrame extends JFrame {
                     Integer cantidad = Integer.valueOf(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
                     int cantidadActualizados;
 
-                    try {
-                        cantidadActualizados = this.productoController.modificar(nombre,descripcion,cantidad,id);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    cantidadActualizados = this.productoController.modificar(nombre,descripcion,cantidad,id);
 
                     JOptionPane.showMessageDialog(this,String.format("%d item modificado con exito", cantidadActualizados));
                 }, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un item"));
@@ -217,15 +213,11 @@ public class ControlDeStockFrame extends JFrame {
                 .ifPresentOrElse(fila -> {
                     Integer id = Integer.valueOf(modelo.getValueAt(tabla.getSelectedRow(), 0).toString());
                     int cantidadEliminada;
-                    try {
-                        cantidadEliminada =  this.productoController.eliminar(id);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    cantidadEliminada =  this.productoController.eliminar(id);
                     /*var filasModificadas = this.productoController.eliminar(id);*/
                     modelo.removeRow(tabla.getSelectedRow());
 
-                    JOptionPane.showMessageDialog(this, cantidadEliminada + "Item eliminado con exito");
+                    JOptionPane.showMessageDialog(this, cantidadEliminada + " Item eliminado con exito");
                 }, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un item"));
     }
 
@@ -263,7 +255,7 @@ public class ControlDeStockFrame extends JFrame {
 
         var categoria = (Categoria) comboCategoria.getSelectedItem();
 
-        this.productoController.guardar(producto);
+        this.productoController.guardar(producto, categoria.getId());
 
         JOptionPane.showMessageDialog(this, "Registrado con éxito!");
 

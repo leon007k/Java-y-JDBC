@@ -26,6 +26,9 @@ public class Categoria {
     }
 
     public void agregar(Producto producto) {
+        if(this.productos == null){
+            this.productos = new ArrayList<Producto>();
+        }
         this.productos.add(producto);
     }
 

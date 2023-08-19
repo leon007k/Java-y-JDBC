@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.alura.jdbc.controller.CategoriaController;
+import com.alura.jdbc.controller.ProductoController;
 
 public class ReporteFrame extends JFrame {
 
